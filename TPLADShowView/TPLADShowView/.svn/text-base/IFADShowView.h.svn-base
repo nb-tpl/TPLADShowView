@@ -1,0 +1,56 @@
+//
+//  IFADShowView.h
+//  IFADShowView
+//
+//  Created by NB_TPL on 14-8-18.
+//  Copyright (c) 2014年 NB_TPL. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+#import "MMSBigPageControl.h"
+
+typedef NS_ENUM(NSUInteger, IFADShowViewAnimationStyle)
+{
+    IFADShowViewAnimationStyleHorizontal,
+    IFADShowViewAnimationStyleVertical,
+};
+
+
+@interface IFADShowView : UIView
+
+
+//展示的视图数组
+@property(nonatomic,strong)NSMutableArray * showViews;
+//是否动画
+@property(nonatomic,assign)BOOL isAnimation;
+//动画间隔时间
+@property(nonatomic,assign)CGFloat animationDuration;
+//页码展示视图
+@property(nonatomic,strong)MMSBigPageControl * pageControl;
+
+
+
+//动画方向
+@property(nonatomic,assign)IFADShowViewAnimationStyle animationStyle;
+
+
+//点击的block
+@property(nonatomic,strong)void (^clickADView)(int clickedIndex);
+
+
+
+
+
+
+//初始化方法
+-(id)initWithFrame:(CGRect)frame ShowViews:(NSMutableArray*)showViews;
+//结束方法,释放之前得调用，因为有timer
+-(void)prepareToDealloc;
+
+
+//调整显示
+-(void)setShowViewIndex:(int)index animation:(BOOL)animation;
+
+
+@end
